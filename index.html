@@ -1,0 +1,726 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>reveal.js</title>
+
+  <link rel="stylesheet" href="./node_modules/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="./node_modules/reveal.js/css/theme/beige.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="./node_modules/reveal.js/lib/css/zenburn.css">
+
+  <style>
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal h3, .reveal h4, .reveal h5 {
+      text-transform: none;
+    }
+
+    button {
+      width: 10em;
+      height: 3em;
+    }
+  </style>
+
+  <script src="src/buttonActions.js"></script>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+<!-- Into -->
+    <section data-markdown>
+      <textarea data-template>
+        # Godbitar ur EcmaScript 2016-2018
+      </textarea>
+    </section>
+
+<!-- Idioter -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          >God morgon Kribba. Du är blå, jag är röd och Stefan är gul som en sol.
+        </textarea>
+      </section>
+      <section data-background-image="./images/idioter.jpg">
+      </section>
+      <section>
+        <img style="border: 0; box-shadow: none; width: 80%" src="images/pyramid.png">
+      </section>
+    </section>
+
+<!-- WAT Destroy all software -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## WAT - @garybernhardt (2012)
+        </textarea>
+      </section>
+      <section data-markdown>
+        <pre><code data-trim data-noescape>
+          > return [] + [];
+
+          > return [] + {}
+          [object Object]
+          > return {} + []
+          0
+          > {} + {};
+          Nan
+        </code></pre>
+      </section>
+    </section>
+
+<!-- Erfarenhet av JavaScript -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## ECMAScript (ES)
+          - Ecma-262 är en specifikation av ett skriptspråk
+          - JavaScript är ett ett språk som följer specifikationen.
+          - V8, SpiderMonkey, Chakra är en implementationer av JavaScript.
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ### Q&A
+          - Kodar JavaScript?
+          - För webbläsaren eller server?
+          - Har lite koll på skillnanderna mellan olika ECMAScript-specifikationer?
+        </textarea>
+      </section>
+      <!-- ECMA-versioner -->
+      <section data-markdown>
+        <textarea data-template>
+          ### ECMAScript-versioner
+          - ES5
+          - ES6 / ES2015
+          - ES2016
+          - ES2017
+          - ES2018
+        </textarea>
+      </section>
+    </section>
+
+<!-- Intro till JavaScript -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## JavaScript, en snabbintro
+        </textarea>
+      </section>
+      <section>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          return '0' == 0;
+
+          foo();
+          bar1(); // variable and function hoisting
+
+          function foo(x) {
+            return x + 2;
+          }
+
+          const bar1 = x => x * 2;
+          const bar2 = (x) => {return x * 2;}
+
+          if(true) {
+            var var1 = 1;
+            const const1 = 1;
+            let let1 = 1;
+          }
+          //const arr = [];
+          //arr.push(1);
+          return {var1};
+
+          return (function(){
+            // Immediately Invoked Function Expression
+            // Self-Executing Anonymous Function
+            return 'hello';
+          })();
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+    </section>
+
+<!-- ES2016 -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## ES2016
+        </textarea>
+      </section>
+      <section>
+          <h3>Nested object destructuring</h3>
+          <pre><code data-trim data-noescape contenteditable=true class="source">
+            let {title, genre} = {title: 'Léon', genre: 'Action'};
+            return `a ${genre} movie named '${title}'`;
+
+            //const movie = {
+            //  title: 'The Big Blue',
+            //  actors: [{name: 'Jean Reno'}]
+            //};
+            //let {title, actors: [{name}]} = movie;
+            //return `${name} is in '${title}'`;
+          </code></pre>
+          <button onclick="runButton(this)">run</button>
+          <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+          <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Exponentiation infix operator</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+              return Math.pow(3, 2);
+              //return 5 ** 2;
+            </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Array.prototype.includes</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          const animals = ['dog', 'cat', 'elephant']
+
+          const aCat = animals.indexOf('cat') >= 0;
+          const aTiger = animals.indexOf('tiger') >= 0;
+
+          const bCat = animals.includes('cat');
+          const bTiger = animals.includes('tiger');
+
+          return {aCat, aTiger, bCat, bTiger};
+          </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ### Labb ES2016
+        </textarea>
+      </section>
+
+      <section data-markdown>
+        <pre><code data-trim data-noescape>
+          const movies = [
+            {
+              "title":"Avengers: Infinity War",
+              "imdb":{
+                "rating":8.6
+              },
+              "people":{
+                "actors":[
+                  "Robert Downey Jr.",
+                  "Chris Hemsworth",
+                  "Mark Ruffalo",
+                  "Chris Evans",
+                  "Scarlett Johansson"
+                ],
+                "directors":[
+                  "Anthony Russo",
+                  "Joe Russo"
+                ]
+              }
+            },
+            {
+              "title":"Inception",
+              "imdb":{
+                "rating":8.8
+              },
+              "people":{
+                "actors":[
+                  "Leonardo DiCaprio",
+                  "Joseph Gordon-Levitt",
+                  "Ellen Page",
+                  "Tom Hardy",
+                  "Ken Watanabe"
+                ],
+                "directors":[
+                  "Christopher Nolan"
+                ]
+              }
+            },
+            {
+              "title":"Terminator",
+              "imdb":{
+                "rating":8.0
+              },
+              "people":{
+                "actors":[
+                  "Arnold Schwarzenegger",
+                  "Michael Biehn",
+                  "Linda Hamilton",
+                  "Paul Winfield",
+                  "Lance Henriksen"
+                ],
+                "directors":[
+                  "James Cameron"
+                ]
+              }
+            }
+         ];
+        </code></pre>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          github.com/kristoferl/mejsla-stepup-2018-js-lab
+          > npm install
+          > node ./lab/es2016/es2016.js
+
+           - Exkludera den första filmen
+           - Ta ut den först skådesplaren i varje film
+           - Vilken film har "James Cameron" regisserat
+           - Filtrera ut alla filmer som har en imdb rating > 8
+
+          > MDN (Mozilla Developer Network) är din fyr i mörkret
+        </textarea>
+      </section>
+    </section>
+
+<!-- ES2017 -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## ES2017
+        </textarea>
+      </section>
+      <section>
+        <h3>Object.values()</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          const cars = {BMW: 3, Tesla: 2, Toyota: 1};
+          cars.__proto__.SAAB = 5;
+
+          const fors = [];
+          for (const i in cars) {
+            fors.push(cars[i]);
+          }
+
+          const keys = Object.keys(cars).map(key => cars[key]);
+
+          const values = Object.values(cars);
+          return {fors, keys, values};
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Object.entries()</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          const cars = {BMW: 3, Tesla: 2, Toyota: 1};
+
+          const keys =  Object.keys(cars).map(key => [key, cars[key]]);
+          return keys;
+
+          const values = Object.entries(cars);
+          //return values;
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3><strike>left-pad</strike> String.prototype.padStart, String.prototype.padEnd</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          return '5'.padStart(3, '0');
+
+          //const numbers = '2034399002125581';
+          //const lastFour = numbers.slice(-4);
+          //return lastFour.padStart(numbers.length, '*');
+
+          //return '5'.padEnd(4, '.');
+
+          //return 'heart'.padStart(10, "❤️");
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+<!--
+      <section>
+        <h3>Object.getOwnPropertyDescriptors</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          const Car = {
+           name: 'BMW',
+           price: 1000000,
+           set discount(x) {
+            this.d = x;
+           },
+           get discount() {
+            return this.d;
+           },
+          };
+          const object1 = {
+            property1: 42,
+            set discount(x) {
+              this.d = x;
+            },
+            get discount() {
+              return this.d;
+            },
+          };
+
+          const descriptors1 = Object.getOwnPropertyDescriptors(object1);
+          return descriptors1.discount;
+          //return Object.getOwnPropertyDescriptor(Car).discount;
+
+          const ElectricCar = Object.assign({}, Car);
+          //return Object.getOwnPropertyDescriptor(ElectricCar).discount
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+-->
+      <section>
+        <h3>Async/Await intro</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          function getAmount(userId) {
+              return getUser(userId)
+                  .then(getBankBalance);
+          }
+
+          async function getAmountAsync(userId) {
+              const user = await getUser(userId);
+              return await getBankBalance(user);
+          }
+
+          return getAmount('1').then(value => `getAmount: ${value}`);
+          //return getAmountAsync('1').then(value => `getAmountAsync: ${value}`);
+
+          function getUser(userId) {
+              return new Promise(resolve => {
+                  setTimeout(() => resolve('kristofer'), 1000);
+              });
+          }
+
+          function getBankBalance(user) {
+              return new Promise((resolve, reject) => {
+                  setTimeout(() => {
+                      if(user === 'kristofer') {
+                          resolve('123456');
+                      } else {
+                          reject('unknown user');
+                      }
+                  }, 1000);
+              });
+          }
+
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Async/Await in parallel</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          async function doubleAndAdd(a, b, c, d) {
+            [a, b, c, d] = await Promise.all(
+              [doubleIt(a), doubleIt(b), doubleIt(c), doubleIt(d)]);
+            return a + b + c + d;
+          }
+
+          return doubleAndAdd(1, 2, 3, 4)
+            .then(value => `doubleAndAdd: ${value}`);
+
+          function doubleIt(input) {
+            return new Promise(resolve => {
+              setTimeout(() => resolve(input * 2), 1000);
+            });
+          }
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Async/Await error handling</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          async function doubleAndAdd(a, b) {
+            [a, b] = await Promise.all([doubleIt(a), doubleIt(b)]);
+            return a + b;
+          }
+
+          return doubleAndAdd(1, 2)
+            .then(value => `doubleAndAdd: ${value}`)
+            .catch(err => `err: ${err}`);
+
+          async function doubleAndAddCatch(a, b) {
+            try {
+              [a] = await doubleIt(a);
+              [b] = await doubleIt(b);
+            } catch(err) {
+              return NaN;
+            }
+            return a + b;
+          }
+
+          //return doubleAndAddCatch(1, 2)
+          //  .then(value => `doubleAndAdd: ${value}`)
+          //  .catch(err => `err: ${err}`);
+
+          function doubleIt(input) {
+            if(input % 2 === 0) {
+              return new Promise((resolve, reject) => reject(`Do not like: ${input}`))
+            }
+            return new Promise(resolve => resolve(input * 2))
+          }
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ### Labb ES2017
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          > node ./lab/es2017/es2017.js
+
+          - `async function` fallerar/reject:as med `throw new Error()`
+          - try-catch `async function`
+          - await a Promise
+          - anropa `.then().catch()` på en `async function`
+          - Promise.all
+        </textarea>
+      </section>
+    </section>
+
+<!-- ES2018 -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## ES2018
+        </textarea>
+      </section>
+      <section>
+        <h3>Spread & Rest (ES2015)</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          const numbers = [1,2,3];
+          const [first, ...rest] = numbers;
+          function sumOfThree(x,y,z) {
+            return x + y + z;
+          }
+          const sumResult = sumOfThree(...numbers);
+          return {first, rest, sumResult};
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Spread & Rest (ES2018)</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          const person = {name: 'kristofer', height: 'tall'};
+          const account = {accountName: 'spara', amount: 1000};
+
+          return {...person, ...account};
+          //return {hairStyle: 'no', ...person, ...account, name: 'kribba'};
+
+          const {height, ...rest} = {...person, ...account};
+          //return rest;
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Blandade RegExp-uppdateringar</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          // Unicode property escapes, vs \W \w \d
+          const pi = /\p{Script_Extensions=Greek}/u.test('π');
+          const heart = /\p{Emoji}/u.test('❤️');
+          const v1 = /\p{Emoji}\p{Emoji_Modifier}/u.test('✌️');
+          const v2 = /\p{Emoji}\p{Emoji_Modifier}/u.test('✌🏽');
+
+          return `pi: ${pi}`;
+          return `heart: ${heart}`;
+          return `v1: ${v1}`;
+          return `v2: ${v2}`;
+
+          // Named groups, and String.prototype.replace
+          const re = /(?&lt;firstName>[A-Za-z]+) (?&lt;lastName>[A-Za-z]+$)/u;
+          const name = 'Bertil Bertilsson'.replace(re, `$&lt;lastName> $&lt;firstName>`);
+          return name;
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Promise.prototype.finally()</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          const pOk = new Promise((resolve, reject) => {resolve('ok')})
+            .then(value => value + ' then!')
+            .catch(err => 'Error! ' + err )
+            .finally((p) => console.log('Finally pOk:' + p));
+          return pOk;
+
+          //const pErr = new Promise((resolve, reject) => {reject('oh no')})
+          //  .then(value => value + ' then!')
+          //  .catch(err => 'Error! ' + err )
+          //  .finally((p) => console.log('Finally pErr:' + p));
+          //return pErr;
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section>
+        <h3>Asynchronous Iteration</h3>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          const promises = [
+            new Promise(resolve => resolve('krille')),
+            new Promise(resolve => resolve('kakan')),
+            new Promise(resolve => resolve('kalle')),
+          ];
+
+          async function test1() {
+            const res = [];
+            for( let p of promises) {
+          //    p = await p;
+              console.log(p);
+              res.push(p);
+            }
+            return res;
+          }
+          return test1();
+
+          async function test2() {
+            const res = [];
+            for await (const p of promises) {
+              console.log(p);
+              res.push(p);
+            }
+            return res;
+          }
+          return test2();
+        </code></pre>
+        <button onclick="runButton(this)">run</button>
+        <button onkeydown="keyPressResetButton(event, this)" onclick="resetButton(this)">reset</button>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ### Labb ES2018
+        </textarea>
+      </section>
+      <section>
+        <pre><code data-trim data-noescape contenteditable=true class="source">
+          setTimeout(() => {
+            console.log('Hello');
+          }, 1000)
+
+          const {promisify} = require('util');
+          const delay = promisify(setTimeout);
+
+          await delay(1000);
+          console.log('hello');
+
+          delay(1000).then(() => {console.log('Hello');});
+        </code></pre>
+        <pre style="display:none;"><code data-trim data-noescape class="result"></code></pre>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          > node ./lab/es2018/es2018.js
+
+          - Spread/Rest
+          - RegExp
+          - Promise.finally()
+          - Asynchronous iteration
+        </textarea>
+      </section>
+    </section>
+
+
+<!-- Gumption -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Gumption
+          > Zen
+          > och konsten att sköta en motorcykel
+          >
+          > -- <cite>Robert M. Pirsig</cite>
+        </textarea>
+      </section>
+    </section>
+
+<!-- Sista delen -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Labb
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          > node ./lab/more/more.js
+
+          - https://www.openbrewerydb.org/
+          - https://randomuser.me/documentation
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          - Hämta en lists på ett antal bryggerier (t.ex. alla som har ordet 'Cat' in namnet)
+          - Hämta information om varje bryggeri
+          - Se gärna till att något anrop fallerar (och säkerställ att inte hela programmet avslutas då)
+          - Använd deconstructing för att extrahera stad, stat och webbsideurl
+          - Gör en snygg utskrift av stad, stat och webbsideurl
+        </textarea>
+      </section>
+    </section>
+
+<!-- Avslutning -->
+    <section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Hur gick det?
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Frågor?
+        </textarea>
+      </section>
+      <section data-markdown>
+        <textarea data-template>
+          ## Tack
+        </textarea>
+      </section>
+    </section>
+
+    <!-- END -->
+  </div>
+</div>
+
+<script src="./node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="./node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+  // More info about config & dependencies:
+  // - https://github.com/hakimel/reveal.js#configuration
+  // - https://github.com/hakimel/reveal.js#dependencies
+  Reveal.initialize({
+    history: true,
+    dependencies: [
+      {src: './node_modules/reveal.js/plugin/markdown/marked.js'},
+      {src: './node_modules/reveal.js/plugin/markdown/markdown.js'},
+      {src: './node_modules/reveal.js/plugin/notes/notes.js', async: true},
+      {
+        src: './node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+    ]
+  });
+</script>
+</body>
+</html>
