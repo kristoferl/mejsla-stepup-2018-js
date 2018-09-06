@@ -22,3 +22,8 @@
   - Pretty print the name, city, state and nationality.
 */
 
+
+// It all starts here
+(async function main() {
+  console.log('Hello dear friend');
+})();
